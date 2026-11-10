@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Dutch Tape Society: small, verified fixes for a broken internet. One a week.">
+<title>Dutch Tape Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one narrow column like a workshop logbook; a strip of tape as the only bold element */
+:root {
+  --bg: #e9ecef; --paper: #f6f7f8; --fg: #1d2126; --muted: #5b6470; --line: #c9ced5;
+  --tape: #aab1b9; --tape-hi: #c8ced4; --accent: #d95f0e; --ok: #2f7d4f;
+  --display: "Archivo Black", "Arial Black", Impact, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15181c; --paper: #1c2026; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2e343c;
+  --tape: #6d747d; --tape-hi: #8a919a; --accent: #ff8a3d; --ok: #5fbf86; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15181c; --paper: #1c2026; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2e343c;
+  --tape: #6d747d; --tape-hi: #8a919a; --accent: #ff8a3d; --ok: #5fbf86; color-scheme: dark }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 48px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 48px; }
+.tape { display: inline-block; transform: rotate(-2.2deg); padding: 10px 22px 8px;
+  background: repeating-linear-gradient(90deg, var(--tape) 0 3px, var(--tape-hi) 3px 6px);
+  color: #1d2126; font: 400 clamp(26px, 6vw, 44px)/1 var(--display); letter-spacing: .02em;
+  clip-path: polygon(1.5% 0, 98% 3%, 100% 22%, 98.5% 48%, 100% 78%, 98% 100%, 2% 97%, 0 72%, 1.6% 50%, 0 25%);
+  box-shadow: 0 1px 0 rgba(0,0,0,.08); }
+header { display: grid; gap: 18px; }
+.lead { font-size: 21px; line-height: 1.4; text-wrap: balance; margin: 0; max-width: 32ch; }
+.nl { color: var(--muted); font-size: .92em; margin: 0; }
+h2 { font: 400 15px/1.2 var(--display); text-transform: uppercase; letter-spacing: .12em; margin: 0 0 14px; }
+section > p { margin: 0 0 10px; max-width: 65ch; }
+.rules { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; counter-reset: r; }
+.rules li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; }
+.rules li::before { counter-increment: r; content: counter(r); font: 600 14px/1.9 var(--mono); color: var(--accent); }
+.rules b { display: block; }
+.entry { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 22px; display: grid; gap: 14px; }
+.entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font: 400 13px/1.4 var(--mono); color: var(--muted); }
+.entry h3 { margin: 0; font: 600 20px/1.3 var(--body); text-wrap: balance; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.stat { border-top: 2px solid var(--line); padding-top: 8px; }
+.stat b { display: block; font: 600 26px/1.1 var(--mono); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); }
+.stat.hot b { color: var(--accent); }
+.pill { display: inline-block; font: 600 12px/1 var(--mono); padding: 5px 9px; border-radius: 99px; border: 1px solid var(--accent); color: var(--accent); }
+.bench { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.bench li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.bench li span:first-child { font: 400 13px/1.7 var(--mono); color: var(--muted); }
+footer { font: 400 13px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div><span class="tape">DUTCH TAPE SOCIETY</span></div>
+    <p class="lead">Small fixes for a broken internet. One a week.</p>
+    <p class="nl">Kleine reparaties voor een kapot internet. Eén per week.</p>
+  </header>
+
+  <section>
+    <h2>What we do</h2>
+    <p>Some things on the internet quietly fail the people who need them most: a crisis line that changed numbers years ago, a fake bank page, a help page a screen reader can't get through. Nobody owns the problem, so it stays.</p>
+    <p>Every week we pick one of these, check every case by hand, and send a short, friendly fix to whoever can repair it. Then we come back to see what changed.</p>
+    <p class="nl">Elke week één klus: opsporen, zelf controleren, en een vriendelijke correctie sturen naar wie het kan repareren.</p>
+  </section>
+
+  <section>
+    <h2>House rules</h2>
+    <ol class="rules">
+      <li><div><b>Check everything ourselves.</b> Every finding is opened and read before it goes on the list.</div></li>
+      <li><div><b>Fix, don't shame.</b> Owners hear from us first. We only name a page once they've had time to repair it.</div></li>
+      <li><div><b>Never pretend to be someone else.</b> We're volunteers and we say so.</div></li>
+      <li><div><b>No names, no credit.</b> The fix is the point.</div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Logbook</h2>
+    <article class="entry">
+      <div class="entry-head"><span>FIX #001 · 10 NOV 2026</span><span class="pill">7 of 10 reported</span></div>
+      <h3>The wrong number: outdated crisis lines in the Netherlands</h3>
+      <p style="margin:0">Since October 2025 the Dutch suicide prevention line is free on <b>113</b> and <b>0800-0113</b>. Many pages still list the old paid 0900 number, and one public page tells readers that 113 does not exist.</p>
+      <p class="nl">Het verkeerde nummer: pagina's die nog het oude, betaalde 0900-nummer van 113 tonen.</p>
+      <div class="stats">
+        <div class="stat"><b>17</b><span>pages checked</span></div>
+        <div class="stat hot"><b>10</b><span>wrong or outdated</span></div>
+        <div class="stat"><b>0</b><span>fixed so far</span></div>
+      </div>
+      <p class="nl" style="margin:0">Page owners are being contacted. Details follow here once they've had a chance to fix it.</p>
+    </article>
+  </section>
+
+  <section>
+    <h2>On the bench</h2>
+    <ul class="bench">
+      <li><span>#002</span><span>Phishing clean-up: fake bank, DigiD and parcel sites, reported before they find victims</span></li>
+      <li><span>#003</span><span>Accessibility: the busiest municipal pages, tested for blind and older visitors</span></li>
+      <li><span>#004</span><span>Maps: pharmacies, GP posts and AEDs on OpenStreetMap checked against official data</span></li>
+      <li><span>#005</span><span>Science: Dutch health pages still citing retracted studies</span></li>
+    </ul>
+  </section>
+
+  <footer>Dutch Tape Society is an independent volunteer project, not affiliated with any organisation mentioned here. Contact: <span style="user-select:all">dutchtapesociety@proton.me</span></footer>
+</div>
+</body>
+</html>
