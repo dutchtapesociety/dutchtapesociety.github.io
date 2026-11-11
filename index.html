@@ -8,56 +8,89 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: one narrow column like a workshop logbook; a strip of tape as the only bold element */
 :root {
   --bg: #e9ecef; --paper: #f6f7f8; --fg: #1d2126; --muted: #5b6470; --line: #c9ced5;
   --tape: #aab1b9; --tape-hi: #c8ced4; --accent: #d95f0e; --ok: #2f7d4f;
+  --promise: #2f5f9e; --sent: #9fb3cc; --none: #c3c8ce; --land: #d5dade;
   --display: "Archivo Black", "Arial Black", Impact, sans-serif;
   --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #15181c; --paper: #1c2026; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2e343c;
-  --tape: #6d747d; --tape-hi: #8a919a; --accent: #ff8a3d; --ok: #5fbf86; color-scheme: dark } }
+  --tape: #6d747d; --tape-hi: #8a919a; --accent: #ff8a3d; --ok: #5fbf86;
+  --promise: #7fb0f0; --sent: #4b5d75; --none: #3a4048; --land: #262b32; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #15181c; --paper: #1c2026; --fg: #e6e9ed; --muted: #9aa3ae; --line: #2e343c;
-  --tape: #6d747d; --tape-hi: #8a919a; --accent: #ff8a3d; --ok: #5fbf86; color-scheme: dark }
+  --tape: #6d747d; --tape-hi: #8a919a; --accent: #ff8a3d; --ok: #5fbf86;
+  --promise: #7fb0f0; --sent: #4b5d75; --none: #3a4048; --land: #262b32; color-scheme: dark }
+* { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
-.wrap { max-width: 720px; margin: 0 auto; padding-block: 48px 64px;
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 48px 64px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: grid; gap: 48px; }
+  display: grid; gap: 56px; }
 .tape { display: inline-block; transform: rotate(-2.2deg); padding: 10px 22px 8px;
   background: repeating-linear-gradient(90deg, var(--tape) 0 3px, var(--tape-hi) 3px 6px);
   color: #1d2126; font: 400 clamp(26px, 6vw, 44px)/1 var(--display); letter-spacing: .02em;
-  clip-path: polygon(1.5% 0, 98% 3%, 100% 22%, 98.5% 48%, 100% 78%, 98% 100%, 2% 97%, 0 72%, 1.6% 50%, 0 25%);
-  box-shadow: 0 1px 0 rgba(0,0,0,.08); }
+  clip-path: polygon(1.5% 0, 98% 3%, 100% 22%, 98.5% 48%, 100% 78%, 98% 100%, 2% 97%, 0 72%, 1.6% 50%, 0 25%); }
 header { display: grid; gap: 18px; }
 .lead { font-size: 21px; line-height: 1.4; text-wrap: balance; margin: 0; max-width: 32ch; }
 .nl { color: var(--muted); font-size: .92em; margin: 0; }
-h2 { font: 400 15px/1.2 var(--display); text-transform: uppercase; letter-spacing: .12em; margin: 0 0 14px; }
+h2 { font: 400 15px/1.2 var(--display); text-transform: uppercase; letter-spacing: .12em; margin: 0 0 16px; }
 section > p { margin: 0 0 10px; max-width: 65ch; }
+
+/* Scoreboard: counter + tape wall side by side */
+.board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 24px; align-items: center;
+  background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 24px; }
+.counter > b { display: block; font: 400 clamp(64px, 16vw, 112px)/.9 var(--display); color: var(--ok); }
+.counter .what { font: 600 18px/1.3 var(--body); margin: 8px 0 14px; }
+.tally { display: grid; gap: 6px; font: 400 14px/1.4 var(--mono); color: var(--muted); }
+.tally span b { color: var(--fg); font-weight: 600; }
+.wall .strips { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 10px 6px; }
+.wall .strips i { display: block; height: 14px; border-radius: 1px; transform: rotate(var(--r));
+  clip-path: polygon(3% 0, 97% 8%, 100% 50%, 96% 100%, 2% 92%, 0 50%); }
+.wall figcaption { font: 12px/1.4 var(--mono); color: var(--muted); margin-top: 12px; }
+@media (max-width: 560px) { .board { grid-template-columns: 1fr; } }
+
+/* Progress bars */
+.bar { display: flex; height: 22px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--none); }
+.bar span { display: block; min-width: 0; }
+.s-ok { background: var(--ok); } .s-pr { background: var(--promise); } .s-se { background: var(--sent); } .s-op { background: var(--accent); } .s-no { background: var(--none); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font: 12px var(--mono); color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.clock { display: flex; align-items: center; gap: 10px; font: 12px var(--mono); color: var(--muted); }
+.clock .track { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.clock .track span { display: block; height: 100%; background: var(--muted); }
+
+/* Logbook */
+.log { display: grid; gap: 16px; }
+.entry { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 22px; display: grid; gap: 14px; }
+.entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font: 400 13px/1.4 var(--mono); color: var(--muted); }
+.entry h3 { margin: 0; font: 600 20px/1.3 var(--body); text-wrap: balance; }
+.entry p { margin: 0; }
+.pill { display: inline-block; font: 600 12px/1 var(--mono); padding: 5px 9px; border-radius: 99px; border: 1px solid var(--ok); color: var(--ok); }
+.pill.wait { border-color: var(--promise); color: var(--promise); }
+
+/* Timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 22px 58px 1fr; gap: 10px; align-items: start; padding-bottom: 14px; position: relative; }
+.timeline li::after { content: ""; position: absolute; left: 7px; top: 18px; bottom: -2px; width: 2px; background: var(--line); }
+.timeline li:last-child::after { display: none; }
+.timeline .dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line); background: var(--bg); margin-top: 3px; }
+.timeline .run .dot { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 20%, transparent); }
+.timeline .num { font: 400 13px/1.7 var(--mono); color: var(--muted); }
+.timeline .run .t { font-weight: 600; }
+.timeline small { display: block; color: var(--muted); font: 12px var(--mono); }
+
 .rules { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; counter-reset: r; }
 .rules li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; }
 .rules li::before { counter-increment: r; content: counter(r); font: 600 14px/1.9 var(--mono); color: var(--accent); }
 .rules b { display: block; }
-.entry { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 22px; display: grid; gap: 14px; }
-.entry-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; font: 400 13px/1.4 var(--mono); color: var(--muted); }
-.entry h3 { margin: 0; font: 600 20px/1.3 var(--body); text-wrap: balance; }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.stat { border-top: 2px solid var(--line); padding-top: 8px; }
-.stat b { display: block; font: 600 26px/1.1 var(--mono); font-variant-numeric: tabular-nums; }
-.stat span { font-size: 13px; color: var(--muted); }
-.stat.hot b { color: var(--accent); }
-.pill { display: inline-block; font: 600 12px/1 var(--mono); padding: 5px 9px; border-radius: 99px; border: 1px solid var(--accent); color: var(--accent); }
-.bench { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-.bench li { display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
-.bench li span:first-child { font: 400 13px/1.7 var(--mono); color: var(--muted); }
 footer { font: 400 13px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
 a { color: var(--accent); }
 </style>
 </head>
 <body>
-
 <div class="wrap">
   <header>
     <div><span class="tape">DUTCH TAPE SOCIETY</span></div>
@@ -65,58 +98,70 @@ a { color: var(--accent); }
     <p class="nl">Kleine reparaties voor een kapot internet. Eén per week.</p>
   </header>
 
+  <section aria-label="Scoreboard">
+    <div class="board">
+      <div class="counter">
+        <b>2</b>
+        <p class="what">things repaired so far</p>
+        <div class="tally">
+          <span><b>18</b> problems found</span>
+          <span><b>15</b> reported to the owner</span>
+          <span><b>2</b> more promised a fix</span>
+        </div>
+      </div>
+      <figure class="wall" style="margin:0"><div class="strips" role="img" aria-label="18 problems found: 2 fixed, 2 promised, 11 reported, 1 about to be reported, 2 unreachable"><i class="s-ok" style="--r:-4deg"></i><i class="s-ok" style="--r:3deg"></i><i class="s-pr" style="--r:-2deg"></i><i class="s-pr" style="--r:5deg"></i><i class="s-se" style="--r:-3deg"></i><i class="s-se" style="--r:1deg"></i><i class="s-se" style="--r:4deg"></i><i class="s-se" style="--r:-5deg"></i><i class="s-se" style="--r:2deg"></i><i class="s-se" style="--r:-1deg"></i><i class="s-se" style="--r:3deg"></i><i class="s-se" style="--r:-4deg"></i><i class="s-se" style="--r:5deg"></i><i class="s-se" style="--r:-2deg"></i><i class="s-se" style="--r:1deg"></i><i class="s-op" style="--r:-3deg"></i><i class="s-no" style="--r:4deg"></i><i class="s-no" style="--r:-1deg"></i></div><figcaption>one strip per problem · green = fixed</figcaption></figure>
+    </div>
+  </section>
+
   <section>
-    <h2>What we do</h2>
-    <p>Some things on the internet quietly fail the people who need them most: a crisis line that changed numbers years ago, a fake bank page, a help page a screen reader can't get through. Nobody owns the problem, so it stays.</p>
-    <p>Every week we pick one of these, check every case by hand, and send a short, friendly fix to whoever can repair it. Then we come back to see what changed.</p>
-    <p class="nl">Elke week één klus: opsporen, zelf controleren, en een vriendelijke correctie sturen naar wie het kan repareren.</p>
+    <h2>How a fix works</h2>
+    <p>Every fix runs for 30 days. Week one: we search, check every case by hand and send a short, friendly note to whoever can repair it. Weeks two to four: we follow up. On day 30 we close the fix with a final score. After that the theme goes into maintenance: once a month we recheck the known pages and catch new ones.</p>
+    <p class="nl">Elke fix loopt 30 dagen: week 1 zoeken en melden, daarna opvolgen. Op dag 30 sluiten we af met een eindscore; daarna een maandelijkse controle.</p>
+  </section>
+
+  <section>
+    <h2>Logbook</h2>
+    <div class="log">
+    <article class="entry">
+      <div class="entry-head"><span>FIX #001 · STARTED 10 NOV 2026</span><span class="pill">2 of 16 fixed</span></div>
+      <h3>The wrong number: outdated crisis lines in the Netherlands</h3>
+      <p>Since October 2025 the Dutch suicide prevention line is free on <b>113</b> and <b>0800-0113</b>. Many pages still listed the old paid 0900 number, and one public page told readers that 113 does not exist. That page has now been corrected.</p>
+      <div class="bar" role="img" aria-label="2 of 16 fixed, 2 promised, 9 reported, 1 about to be reported, 2 unreachable"><span class="s-ok" style="flex:2" title="2 fixed"></span><span class="s-pr" style="flex:2" title="2 promised"></span><span class="s-se" style="flex:9" title="9 reported"></span><span class="s-op" style="flex:1" title="1 about to be reported"></span><span class="s-no" style="flex:2" title="2 no contact"></span></div>
+      <div class="clock"><span>day 2 of 30</span><span class="track"><span style="width:7%"></span></span><span>closes 10 Dec</span></div>
+      <p class="nl">Het verkeerde nummer: 2 pagina's al aangepast, 2 toegezegd.</p>
+    </article>
+    <article class="entry">
+      <div class="entry-head"><span>FIX #002 · STARTED 11 NOV 2026</span><span class="pill wait">reported</span></div>
+      <h3>Phishing clean-up: a fake bank login and a fake parcel company</h3>
+      <p>We checked recently registered and recently scanned sites using the names of Dutch banks, DigiD and parcel services. Two were live and fake: a copied Rabobank login page and a fake "PostNL" freight company. Both were reported to the hosting company, the bank and Google Safe Browsing.</p>
+      <div class="bar" role="img" aria-label="2 of 2 reported, takedown not yet confirmed"><span class="s-se" style="flex:2" title="2 reported"></span></div>
+      <div class="clock"><span>day 1 of 30</span><span class="track"><span style="width:3%"></span></span><span>closes 11 Dec</span></div>
+      <p class="nl">Twee nepsites gemeld; we controleren of ze offline gaan.</p>
+    </article>
+    <div class="legend"><span><i class="s-ok"></i>fixed</span><span><i class="s-pr"></i>owner promised a fix</span><span><i class="s-se"></i>reported</span><span><i class="s-op"></i>about to be reported</span><span><i class="s-no"></i>no way to reach owner</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Coming up</h2>
+    <ol class="timeline">
+      <li class="run"><span class="dot"></span><span class="num">#001</span><span class="t">The wrong number<small>following up</small></span></li>
+      <li class="run"><span class="dot"></span><span class="num">#002</span><span class="t">Phishing clean-up<small>following up</small></span></li>
+      <li><span class="dot"></span><span class="num">#003</span><span>Accessibility: the busiest municipal pages, tested for blind and older visitors<small>16 Nov</small></span></li>
+      <li><span class="dot"></span><span class="num">#004</span><span>Maps: pharmacies, GP posts and AEDs on OpenStreetMap checked against official data<small>23 Nov</small></span></li>
+      <li><span class="dot"></span><span class="num">#005</span><span>Science: Dutch health pages still citing retracted studies<small>30 Nov</small></span></li>
+      <li><span class="dot"></span><span class="num">#006</span><span>Knowledge: outdated health and safety facts on Dutch Wikipedia<small>7 Dec</small></span></li>
+    </ol>
   </section>
 
   <section>
     <h2>House rules</h2>
     <ol class="rules">
       <li><div><b>Check everything ourselves.</b> Every finding is opened and read before it goes on the list.</div></li>
-      <li><div><b>Fix, don't shame.</b> Owners hear from us first. We only name a page once they've had time to repair it.</div></li>
+      <li><div><b>Fix, don't shame.</b> Owners hear from us first. We only name a place once it has been repaired.</div></li>
       <li><div><b>Never pretend to be someone else.</b> We're volunteers and we say so.</div></li>
       <li><div><b>No names, no credit.</b> The fix is the point.</div></li>
     </ol>
-  </section>
-
-  <section>
-    <h2>Logbook</h2>
-    <article class="entry">
-      <div class="entry-head"><span>FIX #002 · 11 NOV 2026</span><span class="pill">reported</span></div>
-      <h3>Phishing clean-up: a fake bank login and a fake parcel company</h3>
-      <p style="margin:0">We checked recently registered and recently scanned sites using the names of Dutch banks, DigiD and parcel services. Two were live and fake: a copied Rabobank login page and a fake "PostNL" freight company. Both were reported to the hosting company, the bank and Google Safe Browsing.</p>
-      <p class="nl">Twee nepsites gemeld bij hoster, bank en Google.</p>
-      <div class="stats">
-        <div class="stat"><b>10</b><span>suspects checked</span></div>
-        <div class="stat hot"><b>2</b><span>live fakes</span></div>
-        <div class="stat"><b>0</b><span>taken down so far</span></div>
-      </div>
-    </article>
-    <article class="entry">
-      <div class="entry-head"><span>FIX #001 · 10 NOV 2026</span><span class="pill">9 of 10 reported</span></div>
-      <h3>The wrong number: outdated crisis lines in the Netherlands</h3>
-      <p style="margin:0">Since October 2025 the Dutch suicide prevention line is free on <b>113</b> and <b>0800-0113</b>. Many pages still list the old paid 0900 number, and one public page tells readers that 113 does not exist.</p>
-      <p class="nl">Het verkeerde nummer: pagina's die nog het oude, betaalde 0900-nummer van 113 tonen.</p>
-      <div class="stats">
-        <div class="stat"><b>17</b><span>pages checked</span></div>
-        <div class="stat hot"><b>10</b><span>wrong or outdated</span></div>
-        <div class="stat"><b>0</b><span>fixed so far</span></div>
-      </div>
-      <p class="nl" style="margin:0">Page owners are being contacted. Details follow here once they've had a chance to fix it.</p>
-    </article>
-  </section>
-
-  <section>
-    <h2>On the bench</h2>
-    <ul class="bench">
-      <li><span>#006</span><span>Knowledge: outdated health and safety facts on Dutch Wikipedia</span></li>
-      <li><span>#003</span><span>Accessibility: the busiest municipal pages, tested for blind and older visitors</span></li>
-      <li><span>#004</span><span>Maps: pharmacies, GP posts and AEDs on OpenStreetMap checked against official data</span></li>
-      <li><span>#005</span><span>Science: Dutch health pages still citing retracted studies</span></li>
-    </ul>
   </section>
 
   <footer>Dutch Tape Society is an independent volunteer project, not affiliated with any organisation mentioned here. Contact: <span style="user-select:all">dutchtapesociety@proton.me</span></footer>
