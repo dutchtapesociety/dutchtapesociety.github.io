@@ -88,6 +88,21 @@ section > p { margin: 0 0 10px; max-width: 65ch; }
 .rules b { display: block; }
 footer { font: 400 13px/1.6 var(--mono); color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
 a { color: var(--accent); }
+/* Help mee: the active kit */
+.kit { background: var(--paper); border: 2px dashed var(--line); border-radius: 6px; padding: 22px; display: grid; gap: 16px; }
+.kit-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
+.kit-head h3 { margin: 0; font: 600 20px/1.3 var(--body); }
+.kit-head span { font: 600 12px/1 var(--mono); color: var(--accent); }
+.kit p { margin: 0; max-width: 65ch; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { display: grid; grid-template-columns: 30px 1fr; gap: 10px; }
+.steps li::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--fg); color: var(--bg); font: 600 13px/1 var(--mono); }
+.steps b { display: block; }
+.steps code { font: 13px var(--mono); background: var(--bg); padding: 1px 5px; border-radius: 3px; }
+.send { display: inline-block; justify-self: start; font: 600 15px/1 var(--body); color: #fff; background: var(--accent); padding: 12px 18px; border-radius: 4px; text-decoration: none; }
+.send:hover, .send:focus-visible { filter: brightness(1.08); }
+.dont { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
+
 </style>
 </head>
 <body>
@@ -118,6 +133,29 @@ a { color: var(--accent); }
     <h2>How a fix works</h2>
     <p>A new fix starts every two weeks and runs for 30 days. Week one: we search, check every case and send a short, friendly note to whoever can repair it. Weeks two to four: we follow up. On day 30 we close the fix with a final score. After that the theme goes into maintenance: once a month we recheck the known pages and catch new ones.</p>
     <p class="nl">Elke twee weken start een fix, die 30 dagen loopt: week 1 zoeken en melden, daarna opvolgen. Op dag 30 sluiten we af met een eindscore; daarna een maandelijkse controle.</p>
+  </section>
+
+  <section id="help">
+    <h2>Help mee · Join in</h2>
+    <p>You can be our eyes. Find a broken page with the kit below and send it to us. We check every find ourselves and send one friendly note to the owner, so the tone stays right and nobody gets a dozen emails.</p>
+    <p class="nl">Jij vindt, wij controleren en melden. Zo blijft het zorgvuldig en krijgt niemand tien mails over hetzelfde.</p>
+    <div class="kit">
+      <div class="kit-head"><h3>Kit #001: het verkeerde nummer</h3><span>ACTIVE KIT</span></div>
+      <p>Sinds 3 oktober 2025 is <b>113 Zelfmoordpreventie</b> gratis te bellen op <b>113</b> en <b>0800-0113</b>. Toch noemen veel pagina's nog het oude betaalde nummer of "113 (normaal tarief)". Wie in nood zit, moet in één oogopslag zien dat bellen niets kost. Bron: <a href="https://www.113.nl/de-3-telefoonnummers-van-113" rel="noopener">113.nl</a>.</p>
+      <ol class="steps">
+        <li><div><b>Zoek</b>Zoek bijvoorbeeld op <code>"0900-0113"</code>, <code>"0900 0113"</code> of <code>"113 normaal tarief"</code>, eventueel met woorden als gemeente, huisarts, praktijk of school.</div></li>
+        <li><div><b>Controleer</b>Open de pagina en kijk of het oude nummer er nu nog staat. Een oud nieuwsbericht met een datum uit het archief telt niet; een pagina met actuele hulpinformatie wel.</div></li>
+        <li><div><b>Stuur</b>Mail de link naar ons met onderwerp "Vondst #001" en kopieer de zin waar het in staat. Meer hoeft niet.</div></li>
+      </ol>
+      <a class="send" href="mailto:dutchtapesociety@proton.me?subject=Vondst%20%23001" data-goatcounter-click="vondst-001" data-goatcounter-title="Stuur een vondst (kit #001)">Stuur een vondst</a>
+      <ul class="dont">
+        <li>Mail de eigenaar niet zelf; wij doen dat, één keer en vriendelijk.</li>
+        <li>Stuur geen namen of persoonsgegevens mee, alleen de link en de zin.</li>
+        <li>Zet niemand online aan de schandpaal.</li>
+        <li>Zie je een nepsite of phishing? Klik er niet op; stuur alleen het adres als tekst.</li>
+      </ul>
+      <p class="nl">Wat er daarna gebeurt: we openen je vondst zelf, melden hem als hij klopt en laten je weten hoe het afloopt. Elke vondst wordt een stukje tape op de muur hierboven.</p>
+    </div>
   </section>
 
   <section>
@@ -173,7 +211,8 @@ a { color: var(--accent); }
     </ol>
   </section>
 
-  <footer>Dutch Tape Society is an independent volunteer project, not affiliated with any organisation mentioned here. Contact: <span style="user-select:all">dutchtapesociety@proton.me</span><br>Last updated 12 Nov 2026</footer>
+  <footer>Dutch Tape Society is an independent volunteer project, not affiliated with any organisation mentioned here. Contact: <span style="user-select:all">dutchtapesociety@proton.me</span><br>Last updated 12 Nov 2026<br>We count visits with GoatCounter: no cookies, no personal data.</footer>
 </div>
+<script data-goatcounter="https://dutchtapesociety.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
