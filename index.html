@@ -3,7 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Dutch Tape Society: small, verified fixes for a broken internet. One a week.">
+<meta name="description" content="Dutch Tape Society: small, verified fixes for a broken internet. A new fix every two weeks.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dutchtapesociety.github.io/">
+<meta property="og:title" content="Dutch Tape Society: small fixes for a broken internet">
+<meta property="og:description" content="Volunteers find outdated or broken info on Dutch websites, check every case and quietly ask the owner to fix it. 11 pages repaired so far. Help us find more.">
 <title>Dutch Tape Society</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
@@ -111,6 +115,7 @@ a { color: var(--accent); }
     <div><span class="tape">DUTCH TAPE SOCIETY</span></div>
     <p class="lead">Small fixes for a broken internet. One at a time.</p>
     <p class="nl">Kleine reparaties voor een kapot internet. Eén klus per twee weken.</p>
+    <a class="send" href="#help">Help find the next one &rarr;</a>
   </header>
 
   <section aria-label="Scoreboard">
@@ -122,10 +127,10 @@ a { color: var(--accent); }
           <span><b>38</b> broken pages found</span>
           <span><b>29</b> owners told</span>
           <span><b>2</b> more promised a fix</span>
-          <span><b>+13</b> fake sites reported</span>
+          <span><b>+13</b> fake sites reported (10 phishing, 3 fake lenders)</span>
         </div>
       </div>
-      <figure class="wall" style="margin:0"><div class="strips" role="img" aria-label="38 broken pages: 11 fixed, 2 promised, 17 reported, 5 about to be reported, 3 unreachable"><i class="s-ok" style="--r:-4deg"></i><i class="s-ok" style="--r:3deg"></i><i class="s-ok" style="--r:-2deg"></i><i class="s-ok" style="--r:5deg"></i><i class="s-ok" style="--r:-3deg"></i><i class="s-ok" style="--r:1deg"></i><i class="s-ok" style="--r:4deg"></i><i class="s-ok" style="--r:-5deg"></i><i class="s-ok" style="--r:2deg"></i><i class="s-ok" style="--r:-1deg"></i><i class="s-ok" style="--r:3deg"></i><i class="s-pr" style="--r:-2deg"></i><i class="s-pr" style="--r:4deg"></i><i class="s-se" style="--r:-3deg"></i><i class="s-se" style="--r:1deg"></i><i class="s-se" style="--r:-4deg"></i><i class="s-se" style="--r:2deg"></i><i class="s-se" style="--r:5deg"></i><i class="s-se" style="--r:-1deg"></i><i class="s-se" style="--r:3deg"></i><i class="s-se" style="--r:-4deg"></i><i class="s-se" style="--r:3deg"></i><i class="s-se" style="--r:-2deg"></i><i class="s-se" style="--r:5deg"></i><i class="s-se" style="--r:-3deg"></i><i class="s-se" style="--r:1deg"></i><i class="s-se" style="--r:4deg"></i><i class="s-se" style="--r:-5deg"></i><i class="s-se" style="--r:2deg"></i><i class="s-se" style="--r:-1deg"></i><i class="s-op" style="--r:3deg"></i><i class="s-op" style="--r:-2deg"></i><i class="s-op" style="--r:4deg"></i><i class="s-op" style="--r:-3deg"></i><i class="s-op" style="--r:1deg"></i><i class="s-no" style="--r:-4deg"></i><i class="s-no" style="--r:2deg"></i><i class="s-no" style="--r:5deg"></i></div><figcaption>one strip per page · green = fixed</figcaption></figure>
+      <figure class="wall" style="margin:0"><div class="strips" role="img" aria-label="38 broken pages: 11 fixed, 2 promised, 17 reported, 4 about to be reported, 4 unreachable"><i class="s-ok" style="--r:-4deg"></i><i class="s-ok" style="--r:3deg"></i><i class="s-ok" style="--r:-2deg"></i><i class="s-ok" style="--r:5deg"></i><i class="s-ok" style="--r:-3deg"></i><i class="s-ok" style="--r:1deg"></i><i class="s-ok" style="--r:4deg"></i><i class="s-ok" style="--r:-5deg"></i><i class="s-ok" style="--r:2deg"></i><i class="s-ok" style="--r:-1deg"></i><i class="s-ok" style="--r:3deg"></i><i class="s-pr" style="--r:-2deg"></i><i class="s-pr" style="--r:4deg"></i><i class="s-se" style="--r:-3deg"></i><i class="s-se" style="--r:1deg"></i><i class="s-se" style="--r:-4deg"></i><i class="s-se" style="--r:2deg"></i><i class="s-se" style="--r:5deg"></i><i class="s-se" style="--r:-1deg"></i><i class="s-se" style="--r:3deg"></i><i class="s-se" style="--r:-4deg"></i><i class="s-se" style="--r:3deg"></i><i class="s-se" style="--r:-2deg"></i><i class="s-se" style="--r:5deg"></i><i class="s-se" style="--r:-3deg"></i><i class="s-se" style="--r:1deg"></i><i class="s-se" style="--r:4deg"></i><i class="s-se" style="--r:-5deg"></i><i class="s-se" style="--r:2deg"></i><i class="s-se" style="--r:-1deg"></i><i class="s-op" style="--r:3deg"></i><i class="s-op" style="--r:-2deg"></i><i class="s-op" style="--r:4deg"></i><i class="s-op" style="--r:-3deg"></i><i class="s-no" style="--r:1deg"></i><i class="s-no" style="--r:-4deg"></i><i class="s-no" style="--r:2deg"></i><i class="s-no" style="--r:5deg"></i></div><figcaption>one strip per page · green = fixed</figcaption></figure>
     </div>
   </section>
 
@@ -151,6 +156,7 @@ a { color: var(--accent); }
       <ul class="dont">
         <li>Mail de eigenaar niet zelf; wij doen dat, één keer en vriendelijk.</li>
         <li>Stuur geen namen of persoonsgegevens mee, alleen de link en de zin.</li>
+        <li>Je mag gerust mailen vanaf een apart of anoniem adres. We gebruiken je adres alleen om je te laten weten hoe het afloopt en delen het met niemand.</li>
         <li>Zet niemand online aan de schandpaal.</li>
         <li>Zie je een nepsite of phishing? Klik er niet op; stuur alleen het adres als tekst.</li>
       </ul>
@@ -170,20 +176,20 @@ a { color: var(--accent); }
       <p class="nl">Toegankelijkheid: 82 gemeentelijke homepages bekeken, 1 blokkeerde inzoomen; gemeld.</p>
     </article>
     <article class="entry">
-      <div class="entry-head"><span>FIX #001 · STARTED 10 NOV 2026</span><span class="pill">11 of 37 fixed</span></div>
-      <h3>The wrong number: outdated crisis lines in the Netherlands</h3>
-      <p>Since October 2025 the Dutch suicide prevention line is free on <b>113</b> and <b>0800-0113</b>. Many pages still listed the old paid 0900 number, and one even told readers the short number did not work. That page has since been corrected. A second search round turned up 21 more pages, several of which had copied the same outdated sentence word for word. One owner wrote back that it is now removing the old number from more than 600 of its own pages.</p>
-      <div class="bar" role="img" aria-label="11 of 37 fixed, 2 promised, 16 reported, 5 about to be reported, 3 unreachable"><span class="s-ok" style="flex:11" title="11 fixed"></span><span class="s-pr" style="flex:2" title="2 promised"></span><span class="s-se" style="flex:16" title="16 reported"></span><span class="s-op" style="flex:5" title="5 about to be reported"></span><span class="s-no" style="flex:3" title="3 no contact"></span></div>
-      <div class="clock"><span>day 7 of 30</span><span class="track"><span style="width:23%"></span></span><span>closes 10 Dec</span></div>
-      <p class="nl">Het verkeerde nummer: 37 pagina's gevonden, 11 al aangepast, 2 toegezegd.</p>
-    </article>
-    <article class="entry">
       <div class="entry-head"><span>FIX #002 · STARTED 11 NOV 2026</span><span class="pill wait">10 reported</span></div>
       <h3>Phishing clean-up: fake bank, tax office and marketplace sites</h3>
       <p>We searched public scan archives for sites using the names of Dutch banks, the tax office, DigiD and parcel and marketplace services, and only counted a site as fake with two independent signs. Round one found a copied Rabobank login and a fake "PostNL" freight company. Round two found eight more: copies of the bunq login page, two fake tax-office pages (one asking for personal details, one trying to empty crypto wallets) and two copies of Marktplaats. All were reported to the brand and, where possible, to the hosting company, without passing on our contact details.</p>
       <div class="bar" role="img" aria-label="10 of 10 reported, takedowns not yet confirmed"><span class="s-se" style="flex:10" title="10 reported"></span></div>
       <div class="clock"><span>day 6 of 30</span><span class="track"><span style="width:20%"></span></span><span>closes 11 Dec</span></div>
       <p class="nl">Tien nepsites gemeld; we controleren of ze offline gaan.</p>
+    </article>
+    <article class="entry">
+      <div class="entry-head"><span>FIX #001 · STARTED 10 NOV 2026</span><span class="pill">11 of 37 fixed</span></div>
+      <h3>The wrong number: outdated crisis lines in the Netherlands</h3>
+      <p>Since October 2025 the Dutch suicide prevention line is free on <b>113</b> and <b>0800-0113</b>. Many pages still listed the old paid 0900 number, and one even told readers the short number did not work. That page has since been corrected. A second search round turned up 21 more pages, several of which had copied the same outdated sentence word for word. Some owners went further and are now checking their other pages too.</p>
+      <div class="bar" role="img" aria-label="11 of 37 fixed, 2 promised, 16 reported, 4 about to be reported, 4 unreachable"><span class="s-ok" style="flex:11" title="11 fixed"></span><span class="s-pr" style="flex:2" title="2 promised"></span><span class="s-se" style="flex:16" title="16 reported"></span><span class="s-op" style="flex:4" title="4 about to be reported"></span><span class="s-no" style="flex:4" title="4 no contact"></span></div>
+      <div class="clock"><span>day 7 of 30</span><span class="track"><span style="width:23%"></span></span><span>closes 10 Dec</span></div>
+      <p class="nl">Het verkeerde nummer: 37 pagina's gevonden, 11 al aangepast, 2 toegezegd.</p>
     </article>
     <div class="legend"><span><i class="s-ok"></i>fixed</span><span><i class="s-pr"></i>owner promised a fix</span><span><i class="s-se"></i>reported</span><span><i class="s-op"></i>about to be reported</span><span><i class="s-no"></i>no way to reach owner</span></div>
     </div>
@@ -193,8 +199,8 @@ a { color: var(--accent); }
     <h2>Coming up</h2>
     <ol class="timeline">
       <li class="run"><span class="dot"></span><span class="num">#003</span><span class="t">Accessibility on municipal websites<small>searching</small></span></li>
-      <li class="run"><span class="dot"></span><span class="num">#001</span><span class="t">The wrong number<small>following up</small></span></li>
       <li class="run"><span class="dot"></span><span class="num">#002</span><span class="t">Phishing clean-up<small>following up</small></span></li>
+      <li class="run"><span class="dot"></span><span class="num">#001</span><span class="t">The wrong number<small>following up</small></span></li>
       <li><span class="dot"></span><span class="num">#004</span><span>Fireworks: pages still showing the old rules after the national consumer fireworks ban<small>25 Nov</small></span></li>
       <li><span class="dot"></span><span class="num">#005</span><span>Helplines: other support lines that changed number or name<small>9 Dec</small></span></li>
       <li><span class="dot"></span><span class="num">#006</span><span>Dead links: expired domains on municipal and school sites that now lead to gambling or spam<small>23 Dec</small></span></li>
